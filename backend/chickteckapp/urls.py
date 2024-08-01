@@ -14,13 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from .views import homefunc,signupfunc, loginfunc, logoutfunc
-
+from django.urls import path
+from .views import homefunc,signupfunc, loginfunc, logoutfunc, chat_view, usersfunc,profile_create_view, create_community
+from .views import profile_update_view, profile_detail_view,community_list,community_detail,join_community,community_chat
 
 urlpatterns = [
-     path('home/',homefunc,name='home'),
-     path('signup/', signupfunc, name='signup'),
-     path('login/', loginfunc, name='login'),
-     path('logout/', logoutfunc, name='logout'),
+    path('home/',homefunc,name='home'),
+    path('users/', usersfunc, name='users'),
+    path('signup/', signupfunc, name='signup'),
+    path('login/', loginfunc, name='login'),
+    path('logout/', logoutfunc, name='logout'),
+    path("<int:user_id>/", chat_view, name="chat"),
+    path('profile/create/', profile_create_view, name='profile_create'),
+    path('profile/update/', profile_update_view, name='profile_update'),
+    path('profile/detail/', profile_detail_view, name='profile_detail'),
+    path('communities/',community_list, name='community_list'),
+    path('communities/create/',create_community, name='create_community'),
+    path('communities/<int:pk>/',community_detail, name='community_detail'),
+    path('communities/<int:pk>/join/',join_community, name='join_community'),
+    path('communities/<int:pk>/chat/',community_chat, name='community_chat'),
 ]

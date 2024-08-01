@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    {% if user.is_authenticated %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">プロフィール詳細</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>ユーザー名:</strong> {{ profile.user.username }}</p>
+            <p class="card-text"><strong>自己紹介:</strong> {{ profile.bio }}</p>
+            <p class="card-text"><strong>年齢:</strong> {{ profile.age }}</p>
+            <p class="card-text"><strong>話す言語:</strong> {{ profile.get_speak_lang_display }}</p>
+            <p class="card-text"><strong>プログラミング言語:</strong> {{ profile.get_it_lang_display }}</p>
+            <a href="{% url 'profile_update' %}" class="btn btn-primary btn-block">プロフィールを編集する</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        プロフィールを表示するにはログインが必要です。
+    </div>
+    <a href="{% url 'login' %}" class="btn btn-primary btn-block mb-2">Login</a>
+    <a href="{% url 'signup' %}" class="btn btn-secondary btn-block">Signup</a>
+    {% endif %}
+</div>
+{% endblock content %}
