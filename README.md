@@ -23,6 +23,7 @@
 <ul>
     <li>HTML(bootstrap)/CSS</li>
     <li>Python(Django)</li>
+    <h3>下記、担当外</h3>
     <li>Docker</li>
     <li>MySQL</li>
     <li>AWS EC2</li>
